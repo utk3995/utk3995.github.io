@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>1030</title>
+	<script type="text/javascript" src="../scripts/shCore.js"></script>
+	<script type="text/javascript" src="../scripts/shBrushCpp.js"></script>
+	<link type="text/css" rel="stylesheet" href="../styles/shCoreDefault.css"/>
+	<script type="text/javascript">SyntaxHighlighter.all();</script>
+</head>
+<body style="background: white; font-family: Helvetica">
+<h1>Question Code : 1030.cpp</h1>
+<pre class="brush: cpp;">
+#include &lt;iostream&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+using namespace std;
+
+int main()
+{
+
+	double pro[110];
+	int val[110];
+	int t;
+	int n;
+	int j;
+	int count;
+	double exp;
+
+	scanf("%d", &t);
+
+	for (int cs = 1; cs &lt;= t; cs++) {
+		scanf("%d", &n);
+		memset(pro, 0, sizeof pro);
+		pro[1] = 1;
+
+
+		for (int i = 1; i &lt;= n; i++) {
+			scanf("%d", val + i);
+		}
+
+		exp = val[1];
+
+		for (int i = 2; i &lt;= n; i++) {
+			
+			for (int k = 1; k &lt;= 6 and i - k &gt;= 1; k++) {
+				j = i - k;
+				count = min(6, n - j);
+				pro[i] = pro[i] + (pro[j] * ( double(1) / double(count)));
+			}
+
+			exp = exp + pro[i] * val[i];
+
+		}
+
+		printf("Case %d: %lf\n", cs, exp);
+
+	}
+
+}
+</body>
+</pre>
+</html>
