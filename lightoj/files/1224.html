@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>1224</title>
+	<title> Problem 1224 - DNA Prefix</title>
 	<script type="text/javascript" src="../scripts/shCore.js"></script>
 	<script type="text/javascript" src="../scripts/shBrushCpp.js"></script>
 	<link type="text/css" rel="stylesheet" href="../styles/shCoreDefault.css"/>
@@ -10,6 +10,33 @@
 </head>
 <body style="background: white; font-family: Helvetica">
 <h1>Question Code : 1224.cpp</h1>
+<h1>Problem Name :  DNA Prefix</h1><br/>
+<h3>Problem Statement : </h3><br/>
+
+<p class=MsoNormal>Given a set of <b>n</b> DNA samples, where each sample is a 
+string containing characters from <b>{A, C, G, T}</b>, we are trying to find a 
+subset of samples in the set, where the length of the longest common prefix 
+multiplied by the number of samples in that subset is maximum.</p> 
+
+<p class=MsoNormal>To be specific, let the samples be:</p> 
+
+<p class=MsoNoSpacing style='text-align:justify'>ACGT</p> 
+
+<p class=MsoNoSpacing style='text-align:justify'>ACGTGCGT</p> 
+
+<p class=MsoNoSpacing style='text-align:justify'>ACCGTGC</p> 
+
+<p class=MsoNormal>ACGCCGT</p> 
+
+<p class=MsoNormal>If we take the subset {ACGT} then the result is 4 (4 * 1), 
+if we take {ACGT, ACGTGCGT, ACGCCGT} then the result is 3 * 3 = 9 (since ACG is 
+the common prefix), if we take {ACGT, ACGTGCGT, ACCGTGC, ACGCCGT} then the 
+result is 2 * 4 = 8.</p> 
+
+<p class=MsoNormal>Now your task is to report the maximum result we can get 
+from the samples.</p> 
+
+<br/><h3>Code : </h3><br/>
 <pre class="brush: cpp;">
 #include &lt;bits/stdc++.h&gt;
 using namespace std;

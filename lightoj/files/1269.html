@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>1269</title>
+	<title> Problem 1269 - Consecutive Sum</title>
 	<script type="text/javascript" src="../scripts/shCore.js"></script>
 	<script type="text/javascript" src="../scripts/shBrushCpp.js"></script>
 	<link type="text/css" rel="stylesheet" href="../styles/shCoreDefault.css"/>
@@ -10,6 +10,42 @@
 </head>
 <body style="background: white; font-family: Helvetica">
 <h1>Question Code : 1269.cpp</h1>
+<h1>Problem Name :  Consecutive Sum</h1><br/>
+<h3>Problem Statement : </h3><br/>
+
+<p class=MsoNormal>Little Jimmy is learning how to add integers. As in decimal 
+the digits are 0 to 9, it makes a bit hard for him to understand the summation 
+of all pair of digits. Since addition of numbers requires the knowledge of 
+adding digits. So, his mother gave him a software that can convert a decimal 
+integer to its binary and a binary to its corresponding decimal. So, Jimmy's 
+idea is to convert the numbers into binaries, and then he adds them and turns 
+the result back to decimal using the software. It's easy to add in binary, 
+since you only need to know how to add (0, 0), (0, 1), (1, 0), (1, 1). Jimmy 
+doesn't have the idea of carry operation, so he thinks that</p> 
+
+<p class=MsoNoSpacing>1 + 1 = 0</p> 
+
+<p class=MsoNoSpacing>1 + 0 = 1</p> 
+
+<p class=MsoNoSpacing>0 + 1 = 1</p> 
+
+<p class=MsoNoSpacing style='margin-bottom:10.0pt'>0 + 0 = 0</p> 
+
+<p class=MsoNormal>Using these operations, he adds the numbers in binary. So, 
+according to his calculations,</p> 
+
+<p class=MsoNormal>3 (011) + 7 (111) = 4 (100)</p> 
+
+<p class=MsoNormal>Now you are given an array of <b>n</b> integers, indexed 
+from <b>0</b> to <b>n-1</b>, you have to find two indices <b>i j</b> in the 
+array <b>(0 &#8804; i &#8804; j &lt; n)</b>, such that the summation (according 
+to Jimmy) of all integers between indices <b>i</b> and <b>j</b> in the array, 
+is maximum. And you also have to find two indices, <b>p q</b> in the array <b>(0 
+&#8804; p &#8804; q &lt; n)</b>, such that the summation (according to Jimmy) 
+of all integers between indices <b>p</b> and <b>q </b>in the array, is minimum. 
+You only have to report the maximum and minimum integers.</p> 
+
+<br/><h3>Code : </h3><br/>
 <pre class="brush: cpp;">
 using namespace std;
 #include &lt;bits/stdc++.h&gt;

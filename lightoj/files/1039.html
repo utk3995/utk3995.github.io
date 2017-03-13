@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>1039</title>
+	<title> Problem 1039 - A Toy Company</title>
 	<script type="text/javascript" src="../scripts/shCore.js"></script>
 	<script type="text/javascript" src="../scripts/shBrushCpp.js"></script>
 	<link type="text/css" rel="stylesheet" href="../styles/shCoreDefault.css"/>
@@ -10,6 +10,33 @@
 </head>
 <body style="background: white; font-family: Helvetica">
 <h1>Question Code : 1039.cpp</h1>
+<h1>Problem Name :  A Toy Company</h1><br/>
+<h3>Problem Statement : </h3><br/>
+
+<p class=MsoNormal>The toy company &quot;Babies Toys&quot; has hired you to 
+help develop educational toys. The current project is a word toy that displays 
+three letters at all times. Below each letter are two buttons that cause the 
+letter above to change to the previous or next letter in alphabetical order. 
+So, with one click of a button the letter 'c' can be changed to a 'b' or a 'd'. 
+The alphabet is circular, so for example an 'a' can become a 'z' or a 'b' with 
+one click.</p> 
+
+<p class=MsoNormal>In order to test the toy, you would like to know if a word 
+can be reached from some starting word, given one or more constraints. A 
+constraint defines a set of forbidden words that can never be displayed by the 
+toy. Each constraint is formatted like &quot;X X X&quot;, where each X is a 
+string of lowercase letters. A word is defined by a constraint if the <b>i<sup>th</sup></b> 
+letter of the word is contained in the ith X of the constraint. For example, 
+the constraint &quot;lf a tc&quot; defines the words &quot;lat&quot;, 
+&quot;fat&quot;, &quot;lac&quot; and &quot;fac&quot;.</p> 
+
+<p class=MsoNormal>You will be given a string start, a string finish, and some 
+forbidden strings. Calculate and return the minimum number of button presses 
+required for the toy to show the word finish if the toy was originally showing 
+the word start. Remember, the toy must never show a forbidden word. If it is 
+impossible for the toy to ever show the desired word, return <b>-1</b>.</p> 
+
+<br/><h3>Code : </h3><br/>
 <pre class="brush: cpp;">
 #include &lt;bits/stdc++.h&gt;
 using namespace std;

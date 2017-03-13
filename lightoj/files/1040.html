@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>1040</title>
+	<title> Problem 1040 - Donation</title>
 	<script type="text/javascript" src="../scripts/shCore.js"></script>
 	<script type="text/javascript" src="../scripts/shBrushCpp.js"></script>
 	<link type="text/css" rel="stylesheet" href="../styles/shCoreDefault.css"/>
@@ -10,6 +10,35 @@
 </head>
 <body style="background: white; font-family: Helvetica">
 <h1>Question Code : 1040.cpp</h1>
+<h1>Problem Name :  Donation</h1><br/>
+<h3>Problem Statement : </h3><br/>
+
+<p class=MsoNormal>A local charity is trying to gather donations of Ethernet 
+cable. You realize that you probably have a lot of extra cable in your house, 
+and make the decision that you will donate as much cable as you can spare.</p> 
+
+<p class=MsoNormal>You will be given the lengths (in meters) of cables between 
+each pair of rooms in your house. You wish to keep only enough cable so that 
+every pair of rooms in your house is connected by some chain of cables, of any 
+length. The lengths are given in <b>n</b> lines, each having <b>n</b> integers, 
+where <b>n</b> is the number of rooms in your house. The <b>j<sup>th</sup></b> 
+integer of <b>i<sup>th</sup></b> line gives the length of the cable between 
+rooms <b>i</b> and <b>j</b> in your house.</p> 
+
+<p class=MsoNormal>If both the <b>j<sup>th</sup></b> integer of <b>i<sup>th</sup></b> 
+line and the <b>i<sup>th</sup></b> integer of <b>j<sup>th</sup></b> line are 
+greater than <b>0</b>, this means that you have two cables connecting rooms <b>i</b> 
+and <b>j</b>, and you can certainly donate at least one of them. If the <b>i<sup>th</sup></b> 
+integer of <b>i<sup>th</sup></b> line is greater than <b>0</b>, this indicates 
+unused cable in room <b>i</b>, which you can donate without affecting your home 
+network in any way. <b>0</b> means no cable.</p> 
+
+<p class=MsoNormal>You are not to rearrange any cables in your house; you are 
+only to remove unnecessary ones. Return the maximum total length of cables (in 
+meters) that you can donate. If any pair of rooms is not initially connected by 
+some path, return <b>-1</b>.</p> 
+
+<br/><h3>Code : </h3><br/>
 <pre class="brush: cpp;">
 #include &lt;bits/stdc++.h&gt;
 using namespace std;

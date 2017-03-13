@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>1149</title>
+	<title> Problem 1149 - Factors and Multiples</title>
 	<script type="text/javascript" src="../scripts/shCore.js"></script>
 	<script type="text/javascript" src="../scripts/shBrushCpp.js"></script>
 	<link type="text/css" rel="stylesheet" href="../styles/shCoreDefault.css"/>
@@ -10,6 +10,34 @@
 </head>
 <body style="background: white; font-family: Helvetica">
 <h1>Question Code : 1149.cpp</h1>
+<h1>Problem Name :  Factors and Multiples</h1><br/>
+<h3>Problem Statement : </h3><br/>
+
+<p class=MsoNormal>You will be given two sets of integers. Let's call them set <b>A</b> 
+and set <b>B</b>. Set <b>A</b> contains <b>n</b> elements and set <b>B</b> 
+contains <b>m</b> elements. You have to remove <b>k<sub>1</sub></b> elements 
+from set <b>A</b> and <b>k<sub>2</sub></b> elements from set <b>B</b> so that 
+of the remaining values no integer in set <b>B</b> is a multiple of any integer 
+in set <b>A</b>. <b>k<sub>1</sub></b> should be in the range <b>[0, n]</b> and <b>k<sub>2</sub></b> 
+in the range <b>[0, m]</b>.</p> 
+
+<p class=MsoNormal>You have to find the value of <b>(k<sub>1</sub> + k<sub>2</sub>)</b> 
+such that <b>(k<sub>1</sub> + k<sub>2</sub>)</b> is as low as possible. <b>P</b> 
+is a multiple of <b>Q</b> if there is some integer <b>K</b> such that <b>P</b> 
+= <b>K * Q</b>.</p> 
+
+<p class=MsoNormal align=center style='text-align:center'><img width=177 
+height=197 id="Picture 1" src="data/problems/desc/1149/f.gif"></p> 
+
+<p class=MsoNormal>Suppose set <b>A</b> is <b>{2, 3, 4, 5}</b> and set <b>B</b> 
+is <b>{6, 7, 8, 9}</b>. By removing <b>2</b> and <b>3</b> from <b>A</b> and <b>8</b> 
+from B, we get the sets <b>{4, 5}</b> and <b>{6, 7, 9}</b>. Here none of the 
+integers <b>6, 7</b> or <b>9</b> is a multiple of <b>4</b> or <b>5</b>. </p> 
+
+<p class=MsoNormal>So for this case the answer is <b>3</b> (<b>two</b> from set 
+<b>A</b> and <b>one</b> from set <b>B</b>).</p> 
+
+<br/><h3>Code : </h3><br/>
 <pre class="brush: cpp;">
 #include &lt;bits/stdc++.h&gt;
 using namespace std;

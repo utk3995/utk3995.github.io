@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>1066</title>
+	<title> Problem 1066 - Gathering Food</title>
 	<script type="text/javascript" src="../scripts/shCore.js"></script>
 	<script type="text/javascript" src="../scripts/shBrushCpp.js"></script>
 	<link type="text/css" rel="stylesheet" href="../styles/shCoreDefault.css"/>
@@ -10,6 +10,54 @@
 </head>
 <body style="background: white; font-family: Helvetica">
 <h1>Question Code : 1066.cpp</h1>
+<h1>Problem Name :  Gathering Food</h1><br/>
+<h3>Problem Statement : </h3><br/>
+
+<p class=MsoNormal>Winter is approaching! The weather is getting colder and 
+days are becoming shorter. The animals take different measures to adjust 
+themselves during this season. </p> 
+
+<p class=MsoNoSpacing>- Some of them &quot;migrate.&quot; This means they 
+travel to other places where the weather is warmer. </p> 
+
+<p class=MsoNoSpacing>- Few animals remain and stay active in the winter. </p> 
+
+<p class=MsoNormal>- Some animals &quot;hibernate&quot; for all of the winter. 
+This is a very deep sleep. The animal's body temperature drops, and its 
+heartbeat and breathing slow down. In the fall, these animals get ready for 
+winter by eating extra food and storing it as body fat.</p> 
+
+<p class=MsoNormal>For this problem, we are interested in the 3rd example and 
+we will be focusing on 'Yogi Bear'.</p> 
+
+<p class=MsoNormal>Yogi Bear is in the middle of some forest. The forest can be 
+modeled as a square grid of size <b>N x N</b>. Each cell of the grid consists 
+of one of the following.</p> 
+
+<p class=MsoNoSpacing><b>.</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;an empty space</p> 
+
+<p class=MsoNoSpacing><b>#</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;an obstacle</p> 
+
+<p class=MsoNormal><b>[A-Z]</b>&nbsp;&nbsp;an English alphabet</p> 
+
+<p class=MsoNormal>There will be at least 1 alphabet and all the letters in the 
+grid will be distinct. If there are <b>k</b> letters, then it will be from the 
+first <b>k</b> alphabets. Suppose <b>k = 3</b>, that means there will be 
+exactly one <b>A</b>, one <b>B</b> and one <b>C</b>.</p> 
+
+<p class=MsoNormal>The letters actually represent foods lying on the ground. 
+Yogi starts from position <b>'A'</b> and sets off with a basket in the hope of 
+collecting all other foods. Yogi can move to a cell if it shares an edge with 
+the current one. For some superstitious reason, Yogi decides to collect all the 
+foods in order. That is, he first collects <b>A</b>, then <b>B</b>, then <b>C</b> 
+and so on until he reaches the food with the highest alphabet value. Another 
+philosophy he follows is that if he lands on a particular food he must collect 
+it.</p> 
+
+<p class=MsoNormal>Help Yogi to collect all the foods in minimum number of 
+moves so that he can have a long sleep in the winter.</p> 
+
+<br/><h3>Code : </h3><br/>
 <pre class="brush: cpp;">
 #include&lt;bits/stdc++.h&gt;
 using namespace std;

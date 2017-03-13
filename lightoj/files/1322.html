@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>1322</title>
+	<title> Problem 1322 - Worst Case Trie</title>
 	<script type="text/javascript" src="../scripts/shCore.js"></script>
 	<script type="text/javascript" src="../scripts/shBrushCpp.js"></script>
 	<link type="text/css" rel="stylesheet" href="../styles/shCoreDefault.css"/>
@@ -10,6 +10,28 @@
 </head>
 <body style="background: white; font-family: Helvetica">
 <h1>Question Code : 1322.cpp</h1>
+<h1>Problem Name :  Worst Case Trie</h1><br/>
+<h3>Problem Statement : </h3><br/>
+
+<p class=MsoNormal>In Computer Science Trie or prefix tree is a data structure 
+which is usually used to store some strings or some numbers. Unlike binary 
+trees, edges contain characters. And a node actually represents a string which 
+is found by taking the characters from the edges, in the path from root to 
+leaf. For example, for {abc, ae, bd, bb, bc, abd} we get the following trie:</p> 
+
+<p class=MsoNormal align=center style='text-align:center'><img src="data/problems/desc/1322/a.png"></p> 
+
+<p class=MsoNormal>Now you are given a set of strings and each string uses one 
+of the <b>K</b> character symbols, and in any string (from the set) a symbol 
+occurs at most once. Your task is to find the number of nodes required if we 
+make a trie with the strings, using the procedure described above. As you don't 
+know the size of the set, your task is to find the worst case result. For 
+example, if you have 2 character symbols, then you need 5 nodes in worst case 
+as in the following trie (let the symbols be {a, b}):</p> 
+
+<p class=MsoNormal align=center style='text-align:center'><img src="data/problems/desc/1322/b.png"></p> 
+
+<br/><h3>Code : </h3><br/>
 <pre class="brush: cpp;">
 #include &lt;bits/stdc++.h&gt;
 using namespace std;

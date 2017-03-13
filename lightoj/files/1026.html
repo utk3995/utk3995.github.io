@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>1026</title>
+	<title> Problem 1026 - Critical Links</title>
 	<script type="text/javascript" src="../scripts/shCore.js"></script>
 	<script type="text/javascript" src="../scripts/shBrushCpp.js"></script>
 	<link type="text/css" rel="stylesheet" href="../styles/shCoreDefault.css"/>
@@ -10,6 +10,74 @@
 </head>
 <body style="background: white; font-family: Helvetica">
 <h1>Question Code : 1026.cpp</h1>
+<h1>Problem Name :  Critical Links</h1><br/>
+<h3>Problem Statement : </h3><br/>
+
+<p class=MsoNormal>In a computer network a link <b>L</b>, which interconnects 
+two servers, is considered critical if there are at least two servers <b>A</b> 
+and <b>B</b> such that all network interconnection paths between <b>A</b> and <b>B</b> 
+pass through <b>L</b>. Removing a critical link generates two disjoint 
+sub-networks such that any two servers of a sub-network are interconnected. For 
+example, the network shown in figure <b>1</b> has three critical links that are 
+marked red: <b>0 - 1</b>, <b>3 - 4</b> and <b>6 - 7</b> in figure <b>2</b>.</p> 
+
+<div align=center> 
+
+<table class=MsoTableGrid border=0 cellspacing=0 cellpadding=0 width=192 
+style='width:2.0in;border-collapse:collapse;border:none'> 
+<tr> 
+<td width=319 valign=top style='width:239.4pt;padding:0in 5.4pt 0in 5.4pt'> 
+<p class=MsoNormal align=center style='text-align:center'><img src="data/problems/desc/1026/a1.png"></p> 
+</td> 
+<td width=319 valign=top style='width:239.4pt;padding:0in 5.4pt 0in 5.4pt'> 
+<p class=MsoNormal align=center style='text-align:center'><img src="data/problems/desc/1026/a2.png"></p> 
+</td> 
+</tr> 
+<tr> 
+<td width=319 valign=top style='width:239.4pt;padding:0in 5.4pt 0in 5.4pt'> 
+<p class=MsoNormal align=center style='text-align:center'>Figure 1: Original 
+Graph</p> 
+</td> 
+<td width=319 valign=top style='width:239.4pt;padding:0in 5.4pt 0in 5.4pt'> 
+<p class=MsoNormal align=center style='text-align:center'>Figure 2: The 
+Critical Links</p> 
+</td> 
+</tr> 
+</table> 
+
+</div> 
+
+<p class=MsoNormal>It is kn<span style='line-height:115%'>own that:</span></p> 
+
+<p class=MsoListParagraphCxSpFirst style='text-align:justify;text-indent:-.25in'><span 
+style='font-size:12.0pt;line-height:115%;font-family:"Garamond","serif"'>1.<span 
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span 
+style='font-size:12.0pt;line-height:115%;font-family:"Garamond","serif"'>The 
+connection links are bi-directional.</span></p> 
+
+<p class=MsoListParagraphCxSpMiddle style='text-align:justify;text-indent:-.25in'><span 
+style='font-size:12.0pt;line-height:115%;font-family:"Garamond","serif"'>2.<span 
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span 
+style='font-size:12.0pt;line-height:115%;font-family:"Garamond","serif"'>A 
+server is not directly connected to itself.</span></p> 
+
+<p class=MsoListParagraphCxSpMiddle style='text-align:justify;text-indent:-.25in'><span 
+style='font-size:12.0pt;line-height:115%;font-family:"Garamond","serif"'>3.<span 
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span 
+style='font-size:12.0pt;line-height:115%;font-family:"Garamond","serif"'>Two 
+servers are interconnected if they are directly connected or if they are 
+interconnected with the same server.</span></p> 
+
+<p class=MsoListParagraphCxSpLast style='text-align:justify;text-indent:-.25in'><span 
+style='font-size:12.0pt;line-height:115%;font-family:"Garamond","serif"'>4.<span 
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span 
+style='font-size:12.0pt;line-height:115%;font-family:"Garamond","serif"'>The 
+network can have stand-alone sub-networks.</span></p> 
+
+<p class=MsoNormal><span style='line-height:115%'>Write a </span>program that 
+finds all critical links of a given computer network.</p> 
+
+<br/><h3>Code : </h3><br/>
 <pre class="brush: cpp;">
 #include &lt;bits/stdc++.h&gt;
 using namespace std;
