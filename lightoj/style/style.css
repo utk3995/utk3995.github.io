@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'Yanone Kaffeesatz';
+  src: url(../fonts/YanoneKaffeesatz-Regular.ttf);
+  font-weight: bold;
+}
+
+
 html
 { height: 100%;}
 
