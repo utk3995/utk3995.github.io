@@ -1,0 +1,143 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title> Problem 1326</title>
+	<meta name="description" content="website description" />
+	<meta name="keywords" content="website keywords, website keywords" />
+	<meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+	<link rel="stylesheet" type="text/css" href="../style/style.css" />
+	<script type="text/javascript" src="../scripts/shCore.js"></script>
+	<script type="text/javascript" src="../scripts/shBrushCpp.js"></script>
+	<link type="text/css" rel="stylesheet" href="../styles/shCoreDefault.css"/>
+	<script type="text/javascript">SyntaxHighlighter.all();</script>
+</head>
+
+<body>
+	<div id="main">
+		<div id="header">
+			<div id="logo">
+				<h1>LightOJ Solutions</h1>
+			</div>
+			<div id="menubar">
+				<ul id="menu">
+					<li class="current"><a>1326</a></li>
+					<li><a href="../">List of Problems</a></li>
+					<li><a href="../tags">Search by Tags</a></li>
+				</ul>
+			</div>
+		</div>
+		<div id="site_content">
+			<div id="sidebar_container">
+				<img class="paperclip" src="../style/paperclip.png" alt="paperclip" />
+				<div class="sidebar">
+				<!-- insert your sidebar items here -->
+				<h3>About Me</h3>
+				<h3><a href="https://www.facebook.com/utk3995">Utkarsh Srivastava</a></h3><br/>
+				<p> Student of IIIT Allahabad </p>
+				<h5>Programmer | Developer | Reader<br/><br/></h5>
+				</div>
+			</div>
+			<div id="content">
+<h1><u>Question Code</u> : 1326</h1>
+<h1><u>Problem Name</u> : <a href=http://lightoj.com/volume_showproblem.php?problem=1326 target="_blank" > Problem 1326 - Race</a></h1><br/>
+<h3><u>Problem Tags</u> : 
+<a href= ../tags/Counting.html>Counting</a>, <a href= ../tags/Dynamic%20Programming.html>Dynamic Programming</a><br/><br/>
+<h3><u>Problem Statement</u> : </h3>
+
+<p class=MsoNormal>Disky and Sooma, two of the biggest mega minds of Bangladesh 
+went to a far country. They ate, coded and wandered around, even in their 
+holidays. They passed several months in this way. But everything has an end. A 
+holy person, Munsiji came into their life. Munsiji took them to derby (horse 
+racing). Munsiji enjoyed the race, but as usual Disky and Sooma did their as 
+usual task instead of passing some romantic moments. They were thinking- in how 
+many ways a race can finish! Who knows, maybe this is their romance!</p> 
+
+<p class=MsoNormal>In a race there are <b>n</b> horses. You hav<span 
+style='line-height:115%'>e to output the number of ways the race can finish. 
+Note that, more than one horse may get the same position. For example, 2 horses 
+can finish in 3 ways. </span></p> 
+
+<p class=MsoListParagraphCxSpFirst style='text-align:justify;text-indent:-.25in'><span 
+style='font-size:12.0pt;line-height:115%;font-family:"Garamond","serif"'>1.<span 
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span 
+style='font-size:12.0pt;line-height:115%;font-family:"Garamond","serif"'>Both 
+first</span></p> 
+
+<p class=MsoListParagraphCxSpMiddle style='text-align:justify;text-indent:-.25in'><span 
+style='font-size:12.0pt;line-height:115%;font-family:"Garamond","serif"'>2.<span 
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span 
+style='font-size:12.0pt;line-height:115%;font-family:"Garamond","serif"'>horse1 
+first and horse2 second</span></p> 
+
+<p class=MsoListParagraphCxSpLast style='text-align:justify;text-indent:-.25in'><span 
+style='font-size:12.0pt;line-height:115%;font-family:"Garamond","serif"'>3.<span 
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span 
+style='font-size:12.0pt;line-height:115%;font-family:"Garamond","serif"'>horse2 
+first and horse1 second</span></p> 
+
+<br/><h3><u>Code</u> : </h3>
+<pre class="brush: cpp;">
+// http://www.qbyte.org/puzzles/p131s.html
+
+#include &lt;bits/stdc++.h&gt;
+using namespace std;
+#define pii pair&lt;int,int&gt;
+#define vi vector&lt;int&gt;
+#define vii vector &lt; pii &gt;
+#define si set&lt;int&gt;
+#define ll long long int
+#define pb push_back
+#define mp make_pair
+#define fr first
+#define se second
+#define MOD 10056
+#define MAX 10100
+
+int dp[1010][1010];
+int ans[1010];
+int fact[1010];
+void precompu()
+{
+    fact[1]=1;
+    for (int i=2;i&lt;1010;i++)
+        fact[i] = (fact[i-1]*i)%MOD;
+
+    for (int i=1;i&lt;1010;i++){
+        dp[i][1]=1;
+        ans[i]=1;
+        for (int j=2;j&lt;1010;j++){
+            dp[i][j] = (dp[i-1][j-1] + j*dp[i-1][j])%MOD;
+            ans[i] = (ans[i] + (fact[j]*dp[i][j])%MOD)%MOD;
+        }
+    }
+}
+
+int main ()
+{
+    //cout &lt;&lt; setprecision(7) &lt;&lt; fixed;
+	#ifndef ONLINE_JUDGE
+	freopen("input.txt","r",stdin);
+	#endif
+	ios_base::sync_with_stdio(false);
+	int t;
+	cin&gt;&gt;t;
+	int cas=1;
+	precompu();
+	while (t--){
+		cout&lt;&lt;"Case "&lt;&lt;cas++&lt;&lt;": ";
+        int n;
+        cin&gt;&gt;n;
+        cout&lt;&lt;ans[n]&lt;&lt;endl;
+	}
+	return 0;
+}
+
+			</div>
+		</div>
+		<div id="footer">
+			<p> Last Updated on : <a>Sun, 19 Mar 2017</a></p>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title> Problem 1257</title>
+	<meta name="description" content="website description" />
+	<meta name="keywords" content="website keywords, website keywords" />
+	<meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+	<link rel="stylesheet" type="text/css" href="../style/style.css" />
+	<script type="text/javascript" src="../scripts/shCore.js"></script>
+	<script type="text/javascript" src="../scripts/shBrushCpp.js"></script>
+	<link type="text/css" rel="stylesheet" href="../styles/shCoreDefault.css"/>
+	<script type="text/javascript">SyntaxHighlighter.all();</script>
+</head>
+
+<body>
+	<div id="main">
+		<div id="header">
+			<div id="logo">
+				<h1>LightOJ Solutions</h1>
+			</div>
+			<div id="menubar">
+				<ul id="menu">
+					<li class="current"><a>1257</a></li>
+					<li><a href="../">List of Problems</a></li>
+					<li><a href="../tags">Search by Tags</a></li>
+				</ul>
+			</div>
+		</div>
+		<div id="site_content">
+			<div id="sidebar_container">
+				<img class="paperclip" src="../style/paperclip.png" alt="paperclip" />
+				<div class="sidebar">
+				<!-- insert your sidebar items here -->
+				<h3>About Me</h3>
+				<h3><a href="https://www.facebook.com/utk3995">Utkarsh Srivastava</a></h3><br/>
+				<p> Student of IIIT Allahabad </p>
+				<h5>Programmer | Developer | Reader<br/><br/></h5>
+				</div>
+			</div>
+			<div id="content">
+<h1><u>Question Code</u> : 1257</h1>
+<h1><u>Problem Name</u> : <a href=http://lightoj.com/volume_showproblem.php?problem=1257 target="_blank" > Problem 1257 - Farthest Nodes in a Tree (II)</a></h1><br/>
+<h3><u>Problem Tags</u> : 
+<a href= ../tags/Breadth%20First%20Search-Depth%20First%20Search.html>Breadth First Search/Depth First Search</a>, <a href= ../tags/Dynamic%20Programming.html>Dynamic Programming</a><br/><br/>
+<h3><u>Problem Statement</u> : </h3>
+
+<p class=MsoNormal>Given a tree (a connected graph with no cycles), you have to 
+find the cost to go to the farthest node from each node. The edges of the tree 
+are weighted and undirected.</p> 
+
+<br/><h3><u>Code</u> : </h3>
+<pre class="brush: cpp;">
+/* Logic : The logic is the basis of the fact that if we select
+an arbitrary vertex and find the farthest vertex from it, say A,
+then A is a point on the diameter. Now lets select a vertex C on
+the diameter AB. We say that the farthest point from C will either
+be A or B. If it was any other vertex D, then our assumption that
+AB is the diameter is wrong. Take any example and demonstrate.*/
+
+
+#include &lt;bits/stdc++.h&gt;
+using namespace std;
+#define pii pair&lt;int,int&gt;
+#define vi vector&lt;int&gt;
+#define vii vector &lt; pii &gt;
+#define si set&lt;int&gt;
+#define ll long long int
+#define pb push_back
+#define mp make_pair
+#define fr first
+#define se second
+#define MOD 1000003
+#define MAX 10100
+
+int n;
+vector &lt; pii &gt; g[30100];
+ll dis[30100];
+int deg[30100];
+int vis[30100];
+ll fc;
+int fi;
+
+void clea(int n)
+{
+    for (int i=0;i&lt;=n+10;i++){
+        g[i].clear();
+        dis[i]=0;
+        deg[i]=0;
+        vis[i]=0;
+    }
+    fc=0;
+    fi=0;
+}
+
+ll dfs1(int u,ll cd)
+{
+    //cout&lt;&lt;u&lt;&lt;endl;
+    ll ma = 0;
+    vis[u]=1;
+    for (int i=0;i&lt;g[u].size();i++){
+        int v = g[u][i].fr;
+        ll w = g[u][i].se;
+        if (vis[v]==1)
+            continue;
+        ma = max(ma, w + dfs1(v,cd+w));
+    }
+    dis[u]=max(dis[u],max(ma,cd));
+    if (cd &gt; fc){
+        fc=cd;
+        fi=u;
+    }
+    return ma;
+}
+
+ll dfs2(int u,ll cd)
+{
+    //cout&lt;&lt;u&lt;&lt;endl;
+    ll ma = 0;
+    vis[u]=2;
+    for (int i=0;i&lt;g[u].size();i++){
+        int v = g[u][i].fr;
+        ll w = g[u][i].se;
+        if (vis[v]==2)
+            continue;
+        ma = max(ma, w + dfs2(v,cd+w));
+    }
+    dis[u]=max(dis[u],max(ma,cd));
+    return ma;
+}
+
+
+int main ()
+{
+    //cout &lt;&lt; setprecision(7) &lt;&lt; fixed;
+	#ifndef ONLINE_JUDGE
+	freopen("input.txt","r",stdin);
+	#endif
+	//ios_base::sync_with_stdio(false);
+	int t;
+	scanf("%d",&t);
+	int cas=1;
+	while (t--){
+		printf("Case %d:\n",cas++);
+        scanf("%d",&n);
+        clea(n);
+        for (int i=0;i&lt;n-1;i++){
+            int u,v,w;
+            scanf("%d %d %d",&u,&v,&w);
+            g[u].pb(mp(v,w));
+            g[v].pb(mp(u,w));
+            deg[u]++;
+            deg[v]++;
+        }
+        dfs1(0,0);
+        int ffi=fi;
+        fc=fi=0;
+        for (int i=0;i&lt;n;i++){
+            dis[i]=vis[i]=0;
+        }
+        dfs1(ffi,0);
+        dfs2(fi,0);
+        for (int i=0;i&lt;n;i++)
+            printf("%lld\n",dis[i]);
+	}
+	return 0;
+}
+
+			</div>
+		</div>
+		<div id="footer">
+			<p> Last Updated on : <a>Sun, 19 Mar 2017</a></p>
+		</div>
+	</div>
+</body>
+</html>
