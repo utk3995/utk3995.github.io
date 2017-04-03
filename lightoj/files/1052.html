@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title> Problem 1065</title>
+	<title> Problem 1052</title>
 	<meta name="description" content="website description" />
 	<meta name="keywords" content="website keywords, website keywords" />
 	<meta http-equiv="content-type" content="text/html; charset=windows-1252" />
@@ -22,7 +22,7 @@
 			</div>
 			<div id="menubar">
 				<ul id="menu">
-					<li class="current"><a>1065</a></li>
+					<li class="current"><a>1052</a></li>
 					<li><a href="../">List of Problems</a></li>
 					<li><a href="../tags">Search by Tags</a></li>
 				</ul>
@@ -40,25 +40,23 @@
 				</div>
 			</div>
 			<div id="content">
-<h1><u>Question Code</u> : 1065</h1>
-<h1><u>Problem Name</u> : <a href=http://lightoj.com/volume_showproblem.php?problem=1065 target="_blank" > Problem 1065 - Number Sequence</a></h1><br/>
+<h1><u>Question Code</u> : 1052</h1>
+<h1><u>Problem Name</u> : <a href=http://lightoj.com/volume_showproblem.php?problem=1052 target="_blank" > Problem 1052 - String Growth</a></h1><br/>
 <h3><u>Problem Tags</u> : 
 <a href= ../tags/Matrix%20Exponentiation.html>Matrix Exponentiation</a><br/><br/>
 <h3><u>Problem Statement</u> : </h3>
 
-<p class=MsoNormal>Let's define another number sequence, given by the following 
-function:</p> 
-
-<p class=MsoNoSpacing><b>f(0) = a</b></p> 
-
-<p class=MsoNoSpacing><b>f(1) = b</b></p> 
-
-<p class=MsoNormal><b>f(n) = f(n-1) + f(n-2), n &gt; 1</b></p> 
-
-<p class=MsoNormal>When <b>a = 0</b> and <b>b = 1</b>, this sequence gives the 
-Fibonacci sequence. Changing the values of <b>a</b> and <b>b</b>, you can get 
-many different sequences. Given the values of <b>a, b</b>, you have to find the 
-last <b>m</b> digits of <b>f(n)</b>.</p> 
+<p class=MsoNormal>Zibon just started his courses in Computer science. After 
+having some lectures on programming courses he fell in love with strings. He 
+started to play with strings and experiments on them. One day he started a 
+string of arbitrary (of course positive) length consisting of only <b>{a, b}</b>. 
+He considered it as 1<sup>st</sup> string and generated subsequent strings from 
+it by replacing all the <b>b</b>'s with <b>ab</b> and all the <b>a</b>'s with <b>b</b>. 
+For example, if he <b>i<sup>th</sup></b> string is <b>abab</b>, <b>(i+1)<sup>th</sup></b> 
+string will be <b>b(ab)b(ab) = babbab</b>. He found that the <b>N<sup>th</sup></b> 
+string has length <b>X</b> and <b>M</b><sup>th</sup> string has length <b>Y</b>. 
+He wondered what will be length of the <b>K<sup>th</sup></b> string. Can you 
+help him?</p> 
 
 <br/><h3><u>Code</u> : </h3>
 <pre class="brush: cpp;">
@@ -73,9 +71,7 @@ using namespace std;
 #define mp make_pair
 #define fr first
 #define se second
-//#define MOD 1000000007
-
-int MOD;
+#define MOD 1000000007
 
 // bits algorithm
 
@@ -85,6 +81,9 @@ inline void set_bit(int & n, int b) { n |= two(b); }
 inline void unset_bit(int & n, int b) { n &= ~two(b); }
 inline int last_bit(int n) { return n & (-n); }
 inline int ones(int n) { int res = 0; while(n && ++res) n-=n&(-n); return res; }
+
+
+// for fibonacci sequence
 
 #define N 3
 
@@ -100,13 +99,13 @@ void mul(ll a[N][N],ll b[N][N])
             a[i][j]=d[i][j];
 }
 
-ll matrixExpo(int n,ll a,ll b)
+pll coeff_matrixExpo(ll n)
 {
     ll mat[N][N] = {{1,1,0},{1,0,0},{0,1,0}};
     ll ans[N][N] = {{1,1,0},{1,0,0},{0,1,0}};
-    if (n==0) return a;
-    if (n==1) return b;
-    if (n==2) return a+b;
+    if (n==0) return mp(1,1);
+    if (n==1) return mp(1,2);
+    if (n==2) return mp(2,3);
     n=n-2;
     while (n){
         if (n%2)
@@ -114,10 +113,10 @@ ll matrixExpo(int n,ll a,ll b)
         mul(mat,mat);
         n=n/2;
     }
-    return ((ans[1][0]*(a+b)%MOD) + (ans[1][1]*(b)%MOD) + (ans[1][2]*(a)%MOD))%MOD;
+    ll ff = ((ans[1][0]*(2)%MOD) + (ans[1][1]*(1)%MOD) + (ans[1][2]*(1)%MOD))%MOD;
+    ll ss = ((ans[1][0]*(3)%MOD) + (ans[1][1]*(2)%MOD) + (ans[1][2]*(1)%MOD))%MOD;
+    return mp(ff,ss);
 }
-
-
 
 int main ()
 {
@@ -128,10 +127,21 @@ int main ()
     int cas=1;
     while (t--){
         cout&lt;&lt;"Case "&lt;&lt;cas++&lt;&lt;": ";
-        ll a,b,n,m;
-        cin&gt;&gt;a&gt;&gt;b&gt;&gt;n&gt;&gt;m;
-        MOD = pow(10,m);
-        cout&lt;&lt;matrixExpo(n,a,b)&lt;&lt;endl;
+        ll n,m,x,y,k;
+        cin&gt;&gt;n&gt;&gt;x&gt;&gt;m&gt;&gt;y&gt;&gt;k;
+        pii coeff1 = coeff_matrixExpo(n-1);
+        pii coeff2 = coeff_matrixExpo(m-1);
+        double p = ((double)(coeff2.se*x - coeff1.se*y))/((double)(coeff2.se*coeff1.fr - coeff1.se*coeff2.fr));
+        double q = ((double)(coeff2.fr*x - coeff1.fr*y))/((double)(coeff2.fr*coeff1.se - coeff1.fr*coeff2.se));
+        if (p&lt;0 || q&lt;0 || (p+q&lt;=0) || ((ll)p != p) || ((ll)q != q)){
+            cout&lt;&lt;"Impossible"&lt;&lt;endl;
+        }
+        else{
+            pii coeff3 = coeff_matrixExpo(k-1);
+            long long int ans = (((ll)p)*coeff3.fr)%MOD;
+            ans += (((ll)q)*coeff3.se)%MOD;
+            cout&lt;&lt;(ans)%MOD&lt;&lt;endl;
+        }
     }
 	return 0;
 }
