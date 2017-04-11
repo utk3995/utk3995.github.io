@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title> Problem 1057</title>
+	<meta name="description" content="website description" />
+	<meta name="keywords" content="website keywords, website keywords" />
+	<meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+	<link rel="stylesheet" type="text/css" href="../style/style.css" />
+	<link rel="icon" type="image/png" href="style/favi.png">
+	<script type="text/javascript" src="../scripts/shCore.js"></script>
+	<script type="text/javascript" src="../scripts/shBrushCpp.js"></script>
+	<link type="text/css" rel="stylesheet" href="../styles/shCoreDefault.css"/>
+	<script type="text/javascript">SyntaxHighlighter.all();</script>
+</head>
+
+<body>
+	<div id="main">
+		<div id="header">
+			<div id="logo">
+				<h1>LightOJ Solutions</h1>
+			</div>
+			<div id="menubar">
+				<ul id="menu">
+					<li class="current"><a>1057</a></li>
+					<li><a href="../">List of Problems</a></li>
+					<li><a href="../tags">Search by Tags</a></li>
+				</ul>
+			</div>
+		</div>
+		<div id="site_content">
+			<div id="sidebar_container">
+				<img class="paperclip" src="../style/paperclip.png" alt="paperclip" />
+				<div class="sidebar">
+				<!-- insert your sidebar items here -->
+				<h3>About Me</h3>
+				<h3><a href="https://www.facebook.com/utk3995">Utkarsh Srivastava</a></h3><br/>
+				<p> Student of IIIT Allahabad </p>
+				<h5>Programmer | Developer | Reader<br/><br/></h5>
+				</div>
+			</div>
+			<div id="content">
+<h1><u>Question Code</u> : 1057</h1>
+<h1><u>Problem Name</u> : <a href=http://lightoj.com/volume_showproblem.php?problem=1057 target="_blank" > Problem 1057 - Collecting Gold</a></h1><br/>
+<h3><u>Problem Tags</u> : 
+<a href= ../tags/Dynamic%20Programming.html>Dynamic Programming</a><br/><br/>
+<h3><u>Problem Statement</u> : </h3>
+
+<p class=MsoNormal>Finally you found the city of Gold. As you are fond of gold, 
+you start collecting them. But there are so much gold that you are getting 
+tired collecting them.</p> 
+
+<p class=MsoNormal>So, you want to find the minimum effort to collect all the 
+gold.</p> 
+
+<p class=MsoNormal>You can describe the city as a <b>2D</b> grid, where your 
+initial position is marked by an <b>'x'</b>. An empty place will be denoted by 
+a <b>'.'</b>. And the cells which contain gold will be denoted by <b>'g'</b>. 
+In each move you can go to all <b>8</b> adjacent places inside the city.</p> 
+
+<br/><h3><u>Code</u> : </h3>
+<pre class="brush: cpp;">
+#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+#define ll long long int
+#define pii pair&lt;int,int&gt;
+#define pll pair&lt;ll,ll&gt;
+#define vi vector&lt;int&gt;
+#define pb push_back
+#define mp make_pair
+#define fr first
+#define se second
+#define MOD 1000000007
+
+// bits algorithm
+
+inline int two(int n) { return 1 &lt;&lt; n; }
+inline int test(int n, int b) { return (n&gt;&gt;b)&1; }
+inline void set_bit(int & n, int b) { n |= two(b); }
+inline void unset_bit(int & n, int b) { n &= ~two(b); }
+inline int last_bit(int n) { return n & (-n); }
+inline int ones(int n) { int res = 0; while(n && ++res) n-=n&(-n); return res; }
+
+int dp[50000][25];
+int seen[50000][25];
+int n,m;
+string s[25];
+pii pos[25];
+pii start;
+int counter;
+int cas=1;
+
+void func(int mask,int last,int cost)
+{
+    for (int i=0;i&lt;counter;i++){
+        if (!(mask&(1&lt;&lt;i))){
+            if ((seen[mask|(1&lt;&lt;i)][i] != cas) || (dp[mask|(1&lt;&lt;i)][i] &gt; cost + max(abs(pos[last].fr - pos[i].fr),abs(pos[last].se - pos[i].se)))){
+                dp[mask|(1&lt;&lt;i)][i] = cost + max(abs(pos[last].fr - pos[i].fr),abs(pos[last].se - pos[i].se));
+                seen[mask|(1&lt;&lt;i)][i] = cas;
+                func(mask|(1&lt;&lt;i),i,dp[mask|(1&lt;&lt;i)][i]);
+            }
+        }
+    }
+}
+
+void clea()
+{
+    counter=0;
+}
+
+int main ()
+{
+	//freopen("input.txt","r",stdin);
+	ios_base::sync_with_stdio(false);
+    int t;
+    cin&gt;&gt;t;
+    while (t--){
+        cout&lt;&lt;"Case "&lt;&lt;cas++&lt;&lt;": ";
+        clea();
+        cin&gt;&gt;n&gt;&gt;m;
+        for (int i=0;i&lt;n;i++){
+            cin&gt;&gt;s[i];
+        }
+        for (int i=0;i&lt;n;i++){
+            for (int j=0;j&lt;m;j++){
+                if (s[i][j] == &apos;x&apos;)
+                    start=mp(i,j);
+                if (s[i][j] == &apos;g&apos;)
+                    pos[counter++]=mp(i,j);
+            }
+        }
+        for (int i=0;i&lt;counter;i++){
+            int mask = 1&lt;&lt;i;
+            dp[mask][i] = max(abs(start.fr - pos[i].fr) , abs(start.se - pos[i].se));
+            seen[mask][i] = cas;
+            func(mask,i,dp[mask][i]);
+        }
+        int ans = INT_MAX;
+        int mask = (1&lt;&lt;counter)-1;
+        for (int i=0;i&lt;counter;i++){
+            ans = min(ans,dp[mask][i] + max(abs(start.fr - pos[i].fr) , abs(start.se - pos[i].se)));
+        }
+        if (ans==INT_MAX)
+            ans=0;
+        cout&lt;&lt;ans&lt;&lt;endl;
+    }
+	return 0;
+}
+
+			</div>
+		</div>
+		<div id="footer">
+			<p> Last Updated on : <a>Tue, 11 Apr 2017</a></p>
+		</div>
+	</div>
+</body>
+</html>

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title> Problem 1038</title>
+	<title> Problem 1043</title>
 	<meta name="description" content="website description" />
 	<meta name="keywords" content="website keywords, website keywords" />
 	<meta http-equiv="content-type" content="text/html; charset=windows-1252" />
@@ -22,7 +22,7 @@
 			</div>
 			<div id="menubar">
 				<ul id="menu">
-					<li class="current"><a>1038</a></li>
+					<li class="current"><a>1043</a></li>
 					<li><a href="../">List of Problems</a></li>
 					<li><a href="../tags">Search by Tags</a></li>
 				</ul>
@@ -40,33 +40,23 @@
 				</div>
 			</div>
 			<div id="content">
-<h1><u>Question Code</u> : 1038</h1>
-<h1><u>Problem Name</u> : <a href=http://lightoj.com/volume_showproblem.php?problem=1038 target="_blank" > Problem 1038 - Race to 1 Again</a></h1><br/>
+<h1><u>Question Code</u> : 1043</h1>
+<h1><u>Problem Name</u> : <a href=http://lightoj.com/volume_showproblem.php?problem=1043 target="_blank" > Problem 1043 - Triangle Partitioning</a></h1><br/>
 <h3><u>Problem Tags</u> : 
-<a href= ../tags/Dynamic%20Programming.html>Dynamic Programming</a>, <a href= ../tags/Probability-Expected%20Value.html>Probability/Expected Value</a><br/><br/>
+<a href= ../tags/Basic%20Geometry.html>Basic Geometry</a>, <a href= ../tags/Binary%20Search-Bisection.html>Binary Search/Bisection</a><br/><br/>
 <h3><u>Problem Statement</u> : </h3>
 
-<p class=MsoNormal>Rimi learned a new thing about integers, which is - any 
-positive integer greater than <b>1</b> can be divided by its divisors. So, he 
-is now playing with this property. He selects a number <b>N</b>. And he calls 
-this <b>D</b>.</p> 
+<p class=MsoNormal>See the picture below.</p> 
 
-<p class=MsoNormal>In each turn he randomly chooses a divisor of <b>D</b> <b>(1 
-to D)</b>. Then he divides <b>D</b> by the number to obtain new <b>D</b>. He 
-repeats this procedure until <b>D</b> becomes <b>1</b>. What is the expected 
-number of moves required for <b>N</b> to become <b>1</b>.</p> 
+<p class=MsoNormal align=center style='text-align:center'><img width=285 
+height=205 id="Picture 1" src="data/problems/desc/1043/a.png"></p> 
+
+<p class=MsoNormal>You are given <b>AB</b>, <b>AC</b> and <b>BC</b>. <b>DE</b> 
+is parallel to <b>BC</b>. You are also given the area ratio between <b>ADE</b> 
+and <b>BDEC</b>. You have to find the value of <b>AD</b>.</p> 
 
 <br/><h3><u>Code</u> : </h3>
 <pre class="brush: cpp;">
-/*
-The first person has a 100% chance of a unique number (of course)
-The second has a (1 – 1/365) chance (all but 1 number from the 365)
-The third has a (1 – 2/365) chance (all but 2 numbers)
-The 23rd has a (1 – 22/365) (all but 22 numbers)
-p(different) = 1 * (1-1/d) * (1 - 2/d) * (1 - 3/d) ....
-p(exist a match) = 1 - p(different)
-*/
-
 #include &lt;bits/stdc++.h&gt;
 using namespace std;
 #define pii pair&lt;int,int&gt;
@@ -78,44 +68,56 @@ using namespace std;
 #define mp make_pair
 #define fr first
 #define se second
-#define MAX 10100
 #define MOD 1000003
+#define MAX 10100
+#define eps 1e-7
 
-double ans[100100];
-int divi[100100];
-void precompute()
+bool check(double ab,double ac,double bc,double ad,double r)
 {
-    ans[1]=0;
-    for (int i=2;i&lt;100100;i++){
-        ans[i] = (ans[i] + divi[i] + 2)/((double)(divi[i] + 1));
-        for (int j=2;i*j&lt;100100;j++){
-            ans[i*j] += ans[i];
-            divi[i*j]++;
-        }
-    }
+    double ae = (ad/ab*ac);
+    double de = (ad/ab*bc);
+    double s1 = (ad+ae+de)/2.0;
+    double s2 = (ab+bc+ac)/2.0;
+    double abc = sqrt(s2*(s2-ab)*(s2-bc)*(s2-ac));
+    double ade = sqrt(s1*(s1-ad)*(s1-ae)*(s1-de));
+    double bdec = abc-ade;
+    if (((ade/bdec) - r) &gt;= eps)
+        return true;
+    else
+        return false;
 }
 
 int main ()
 {
+    cout &lt;&lt; setprecision(8) &lt;&lt; fixed;
 	#ifndef ONLINE_JUDGE
 	freopen("input.txt","r",stdin);
 	#endif
 	ios_base::sync_with_stdio(false);
 	int t;
-	cout &lt;&lt; setprecision(7);
-	cout &lt;&lt; fixed;
 	cin&gt;&gt;t;
 	int cas=1;
-	precompute();
 	while (t--){
 		cout&lt;&lt;"Case "&lt;&lt;cas++&lt;&lt;": ";
-        int n;
-        cin&gt;&gt;n;
-        cout&lt;&lt;ans[n]&lt;&lt;endl;
+        double ab,ac,bc,r;
+        cin&gt;&gt;ab&gt;&gt;ac&gt;&gt;bc&gt;&gt;r;
+        double low=0;
+        double high=ab;
+        double ans=-1;
+        for (int i=0;i&lt;64;i++){
+            double mid=(low+high)/2;
+            if (check(ab,ac,bc,mid,r)){
+                high=mid;
+                ans=mid;
+            }
+            else{
+                low=mid;
+            }
+        }
+        cout&lt;&lt;ans&lt;&lt;endl;
 	}
 	return 0;
 }
-
 			</div>
 		</div>
 		<div id="footer">

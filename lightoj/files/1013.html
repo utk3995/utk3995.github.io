@@ -1,0 +1,154 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title> Problem 1013</title>
+	<meta name="description" content="website description" />
+	<meta name="keywords" content="website keywords, website keywords" />
+	<meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+	<link rel="stylesheet" type="text/css" href="../style/style.css" />
+	<link rel="icon" type="image/png" href="style/favi.png">
+	<script type="text/javascript" src="../scripts/shCore.js"></script>
+	<script type="text/javascript" src="../scripts/shBrushCpp.js"></script>
+	<link type="text/css" rel="stylesheet" href="../styles/shCoreDefault.css"/>
+	<script type="text/javascript">SyntaxHighlighter.all();</script>
+</head>
+
+<body>
+	<div id="main">
+		<div id="header">
+			<div id="logo">
+				<h1>LightOJ Solutions</h1>
+			</div>
+			<div id="menubar">
+				<ul id="menu">
+					<li class="current"><a>1013</a></li>
+					<li><a href="../">List of Problems</a></li>
+					<li><a href="../tags">Search by Tags</a></li>
+				</ul>
+			</div>
+		</div>
+		<div id="site_content">
+			<div id="sidebar_container">
+				<img class="paperclip" src="../style/paperclip.png" alt="paperclip" />
+				<div class="sidebar">
+				<!-- insert your sidebar items here -->
+				<h3>About Me</h3>
+				<h3><a href="https://www.facebook.com/utk3995">Utkarsh Srivastava</a></h3><br/>
+				<p> Student of IIIT Allahabad </p>
+				<h5>Programmer | Developer | Reader<br/><br/></h5>
+				</div>
+			</div>
+			<div id="content">
+<h1><u>Question Code</u> : 1013</h1>
+<h1><u>Problem Name</u> : <a href=http://lightoj.com/volume_showproblem.php?problem=1013 target="_blank" > Problem 1013 - Love Calculator</a></h1><br/>
+<h3><u>Problem Tags</u> : 
+<a href= ../tags/Dynamic%20Programming.html>Dynamic Programming</a><br/><br/>
+<h3><u>Problem Statement</u> : </h3>
+
+<p class=MsoNormal>Yes, you are developing a <b>'Love calculator'</b>. The 
+software would be quite complex such that nobody could crack the exact behavior 
+of the software.</p> 
+
+<p class=MsoNormal>So, given two names your software will generate the 
+percentage of their <b>'love'</b> according to their names. The software 
+requires the following things:</p> 
+
+<p class=MsoListParagraphCxSpFirst style='margin-left:.75in;text-indent:-.5in'><span 
+style='font-size:12.0pt;line-height:115%;font-family:"Garamond","serif"'>1.<span 
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</span></span><span style='font-size:12.0pt;line-height:115%;font-family:"Garamond","serif"'>The 
+length of the shortest string that contains the names as subsequence.</span></p> 
+
+<p class=MsoListParagraphCxSpLast style='margin-left:.75in;text-indent:-.5in'>2.<span 
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</span><span style='font-size:12.0pt;line-height:115%;font-family:"Garamond","serif"'>Total 
+number of unique shortest strings which contain the names as subsequence.</span></p> 
+
+<p class=MsoNormal>Now your task is to find these parts.</p> 
+
+<br/><h3><u>Code</u> : </h3>
+<pre class="brush: cpp;">
+/*
+Took hint from Internet.
+
+First part is relatively simple. its just a.size()+b.size()-lcs(a,b). Now for the second part, we
+need to consider these cases on the shortest string generated in part1. Call it X.
+1) if the character k of X is same in both the strings, then dp[k,i,j] = dp[k-1,i-1,j-1]
+2) if the character k was from a, then dp[k,i,j]+=dp[k-1,i-1,j]
+3) if the character k was from b, then dp[k,i,j]+=dp[k-1,i,j-1]*
+
+*/
+
+
+#include &lt;bits/stdc++.h&gt;
+using namespace std;
+#define pii pair&lt;int,int&gt;
+#define vi vector&lt;int&gt;
+#define vii vector &lt; pii &gt;
+#define si set&lt;int&gt;
+#define ll long long int
+#define pb push_back
+#define mp make_pair
+#define fr first
+#define se second
+#define MOD 1000003
+#define MAX 10100
+
+int main ()
+{
+    cout &lt;&lt; setprecision(7) &lt;&lt; fixed;
+	#ifndef ONLINE_JUDGE
+	freopen("input.txt","r",stdin);
+	#endif
+	ios_base::sync_with_stdio(false);
+	int t;
+	cin&gt;&gt;t;
+	int cas=1;
+	while (t--){
+		cout&lt;&lt;"Case "&lt;&lt;cas++&lt;&lt;": ";
+        string a,b;
+        cin&gt;&gt;a&gt;&gt;b;
+        int n=a.size();
+        int m=b.size();
+        unsigned ll dp[n+1][m+1];
+        unsigned ll num[n+1][m+1];
+        for (int i=0;i&lt;=n;i++)
+            for (int j=0;j&lt;=m;j++)
+                num[i][j]=false;
+
+        for (int i=0;i&lt;=n;i++){
+            for (int j=0;j&lt;=m;j++){
+                if (i==0 || j==0){
+                    dp[i][j]=0;
+                    num[i][j]=1;
+                }
+                else{
+                    dp[i][j]=max(dp[i-1][j],dp[i][j-1]);
+                    num[i][j]=0;
+                    if (a[i-1] == b[j-1]){
+                        dp[i][j] = max(dp[i][j],dp[i-1][j-1]+1);
+                        num[i][j] = num[i-1][j-1];
+                    }
+                    else{
+                        if (dp[i-1][j] &gt;= dp[i][j-1])
+                            num[i][j] += num[i-1][j];
+                        if (dp[i][j-1] &gt;= dp[i-1][j])
+                            num[i][j] += num[i][j-1];
+                    }
+                }
+            }
+        }
+        cout&lt;&lt;(n+m-dp[n][m])&lt;&lt;" "&lt;&lt;num[n][m];
+        cout&lt;&lt;endl;
+	}
+	return 0;
+}
+			</div>
+		</div>
+		<div id="footer">
+			<p> Last Updated on : <a>Tue, 11 Apr 2017</a></p>
+		</div>
+	</div>
+</body>
+</html>
