@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title> Problem 1031</title>
+	<title> Problem 1110</title>
 	<meta name="description" content="website description" />
 	<meta name="keywords" content="website keywords, website keywords" />
 	<meta http-equiv="content-type" content="text/html; charset=windows-1252" />
@@ -22,7 +22,7 @@
 			</div>
 			<div id="menubar">
 				<ul id="menu">
-					<li class="current"><a>1031</a></li>
+					<li class="current"><a>1110</a></li>
 					<li><a href="../">List of Problems</a></li>
 					<li><a href="../tags">Search by Tags</a></li>
 				</ul>
@@ -40,22 +40,17 @@
 				</div>
 			</div>
 			<div id="content">
-<h1><u>Question Code</u> : 1031</h1>
-<h1><u>Problem Name</u> : <a href=http://lightoj.com/volume_showproblem.php?problem=1031 target="_blank" > Problem 1031 - Easy Game</a></h1><br/>
+<h1><u>Question Code</u> : 1110</h1>
+<h1><u>Problem Name</u> : <a href=http://lightoj.com/volume_showproblem.php?problem=1110 target="_blank" > Problem 1110 - An Easy LCS</a></h1><br/>
 <h3><u>Problem Tags</u> : 
 <a href= ../tags/Dynamic%20Programming.html>Dynamic Programming</a><br/><br/>
 <h3><u>Problem Statement</u> : </h3>
 
-<p class=MsoNormal>You are playing a two player game. Initially there are <b>n</b> 
-integer numbers in an array and player <b>A</b> and <b>B</b> get chance to take 
-them alternatively. Each player can take one or more numbers from the left or 
-right end of the array but cannot take from both ends at a time. He can take as 
-many consecutive numbers as he wants during his time. The game ends when all 
-numbers are taken from the array by the players. The point of each player is 
-calculated by the summation of the numbers, which he has taken. Each player 
-tries to achieve more points from other. If both players play optimally and 
-player <b>A</b> starts the game then how much more point can player <b>A</b> 
-get than player <b>B</b>?</p> 
+<p class=MsoNormal>LCS means 'Longest Common Subsequence' that means two 
+non-empty strings are given; you have to find the Longest Common Subsequence 
+between them. Since there can be many solutions, you have to print the one 
+which is the lexicographically smallest. Lexicographical order means dictionary 
+order. For example, 'abc' comes before 'abd' but 'aaz' comes before 'abc'.</p> 
 
 <br/><h3><u>Code</u> : </h3>
 <pre class="brush: cpp;">
@@ -73,32 +68,6 @@ using namespace std;
 #define MOD 1000003
 #define MAX 10100
 
-int a[110];
-ll dp[110][110];
-int n;
-
-ll func(int l,int u)
-{
-    if (l&gt;u){
-        return 0;
-    }
-    if (dp[l][u] != -1)
-        return dp[l][u];
-    ll ret = INT_MIN;
-    ll sum=0;
-    for (int i=l;i&lt;=u;i++){
-        sum += a[i];
-            ret = max(ret , sum - func(i+1,u));
-    }
-    sum=0;
-    for (int i=u;i&gt;=l;i--){
-        sum += a[i];
-            ret = max(ret , sum - func(l,i-1));
-    }
-    dp[l][u] = ret;
-    return ret;
-}
-
 int main ()
 {
     //cout &lt;&lt; setprecision(7) &lt;&lt; fixed;
@@ -111,18 +80,50 @@ int main ()
 	int cas=1;
 	while (t--){
 		cout&lt;&lt;"Case "&lt;&lt;cas++&lt;&lt;": ";
-        cin&gt;&gt;n;
-        for (int i=0;i&lt;n;i++){
-            cin&gt;&gt;a[i];
-            for (int j=0;j&lt;n;j++){
-                dp[i][j] = dp[i][j] =-1;
+        string a,b;
+        cin&gt;&gt;a&gt;&gt;b;
+        int n=a.size();
+        int m=b.size();
+        int dp[n+1][m+1];
+        string dp1[n+1][m+1];
+        for (int i=0;i&lt;=n;i++){
+            for (int j=0;j&lt;=m;j++){
+                if (i==0 || j==0){
+                    dp[i][j]=0;
+                    dp1[i][j]="";
+                }
+                else{
+                    if (dp[i-1][j] &gt; dp[i][j-1]){
+                        dp1[i][j]=dp1[i-1][j];
+                        dp[i][j]=dp[i-1][j];
+                    }
+                    else if(dp[i-1][j] &lt; dp[i][j-1]){
+                        dp1[i][j]=dp1[i][j-1];
+                        dp[i][j]=dp[i][j-1];
+                    }
+                    else{
+                        dp1[i][j]=min(dp1[i][j-1],dp1[i-1][j]);
+                        dp[i][j]=dp[i-1][j];
+                    }
+                    if (a[i-1]==b[j-1]){
+                        dp[i][j]=max(dp[i][j],dp[i-1][j-1]+1);
+                        if (dp1[i-1][j-1].size()+1 &gt; dp1[i][j].size())
+                            dp1[i][j]=dp1[i-1][j-1]+a[i-1];
+                        else{
+                            if (dp1[i-1][j-1]+a[i-1] &lt; dp1[i][j])
+                                dp1[i][j] = dp1[i-1][j-1] + a[i-1];
+                        }
+                    }
+                }
             }
         }
-        cout&lt;&lt;func(0,n-1)&lt;&lt;endl;
+        string ans = dp1[n][m];
+        if (ans=="")
+            ans=":(";
+        cout&lt;&lt;ans&lt;&lt;endl;
 	}
 	return 0;
 }
-
 			</div>
 		</div>
 		<div id="footer">
