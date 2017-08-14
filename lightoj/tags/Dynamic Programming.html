@@ -11,6 +11,23 @@
 </head>
 
 <body>
+	<script>
+		function myFunction() {
+			var input, filter, ul, li, a, i;
+			input = document.getElementById("myInput");
+			filter = input.value.toUpperCase();
+			ul = document.getElementById("myUL");
+			hh = ul.getElementsByTagName("h4");
+			for (i = 0; i < hh.length; i++) {
+				a = hh[i].getElementsByTagName("a")[0];
+				if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+					hh[i].style.display = "";
+				} else {
+					hh[i].style.display = "none";
+				}
+			}
+		}
+	</script>
 	<div id="main">
 		<div id="header">
 			<div id="logo">
@@ -36,33 +53,36 @@
 				</div>
 			</div>
 			<div id="content">
-				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 1. <a href=../files/1030.html> Problem 1030 - Discovering Gold</a><br></h4>
-				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 2. <a href=../files/1004.html> Problem 1004 - Monkey Banana Problem</a><br></h4>
-				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 3. <a href=../files/1011.html> Problem 1011 - Marriage Ceremonies</a><br></h4>
-				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 4. <a href=../files/1027.html> Problem 1027 - A Dangerous Maze</a><br></h4>
-				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 5. <a href=../files/1050.html> Problem 1050 - Marbles</a><br></h4>
-				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 6. <a href=../files/1257.html> Problem 1257 - Farthest Nodes in a Tree (II)</a><br></h4>
-				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 7. <a href=../files/1031.html> Problem 1031 - Easy Game</a><br></h4>
-				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 8. <a href=../files/1159.html> Problem 1159 - Batman</a><br></h4>
-				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 9. <a href=../files/1017.html> Problem 1017 - Brush (III)</a><br></h4>
-				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 10. <a href=../files/1051.html> Problem 1051 - Good or Bad</a><br></h4>
-				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 11. <a href=../files/1044.html> Problem 1044 - Palindrome Partitioning</a><br></h4>
-				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 12. <a href=../files/1057.html> Problem 1057 - Collecting Gold</a><br></h4>
-				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 13. <a href=../files/1038.html> Problem 1038 - Race to 1 Again</a><br></h4>
-				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 14. <a href=../files/1047.html> Problem 1047 - Neighbor House</a><br></h4>
-				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 15. <a href=../files/1013.html> Problem 1013 - Love Calculator</a><br></h4>
-				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 16. <a href=../files/1110.html> Problem 1110 - An Easy LCS</a><br></h4>
-				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 17. <a href=../files/1005.html> Problem 1005 - Rooks</a><br></h4>
-				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 18. <a href=../files/1201.html> Problem 1201 - A Perfect Murder</a><br></h4>
-				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 19. <a href=../files/1033.html> Problem 1033 - Generating Palindromes</a><br></h4>
-				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 20. <a href=../files/1025.html> Problem 1025 - The Specials Menu</a><br></h4>
-				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 21. <a href=../files/1326.html> Problem 1326 - Race</a><br></h4>
-				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 22. <a href=../files/1422.html> Problem 1422 - Halloween Costumes</a><br></h4>
-				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 23. <a href=../files/1122.html> Problem 1122 - Digit Count</a><br></h4>
+				<input type="text" class = "myInput" id="myInput" onkeyup="myFunction()" placeholder="Search for problems.." title="Type in a name">
+				<ul id="myUL">
+				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 1. <a href=../files/1011.html> Problem 1011 - Marriage Ceremonies</a><br></h4>
+				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 2. <a href=../files/1110.html> Problem 1110 - An Easy LCS</a><br></h4>
+				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 3. <a href=../files/1201.html> Problem 1201 - A Perfect Murder</a><br></h4>
+				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 4. <a href=../files/1031.html> Problem 1031 - Easy Game</a><br></h4>
+				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 5. <a href=../files/1017.html> Problem 1017 - Brush (III)</a><br></h4>
+				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 6. <a href=../files/1122.html> Problem 1122 - Digit Count</a><br></h4>
+				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 7. <a href=../files/1005.html> Problem 1005 - Rooks</a><br></h4>
+				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 8. <a href=../files/1422.html> Problem 1422 - Halloween Costumes</a><br></h4>
+				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 9. <a href=../files/1027.html> Problem 1027 - A Dangerous Maze</a><br></h4>
+				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 10. <a href=../files/1057.html> Problem 1057 - Collecting Gold</a><br></h4>
+				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 11. <a href=../files/1326.html> Problem 1326 - Race</a><br></h4>
+				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 12. <a href=../files/1159.html> Problem 1159 - Batman</a><br></h4>
+				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 13. <a href=../files/1047.html> Problem 1047 - Neighbor House</a><br></h4>
+				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 14. <a href=../files/1025.html> Problem 1025 - The Specials Menu</a><br></h4>
+				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 15. <a href=../files/1051.html> Problem 1051 - Good or Bad</a><br></h4>
+				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 16. <a href=../files/1004.html> Problem 1004 - Monkey Banana Problem</a><br></h4>
+				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 17. <a href=../files/1257.html> Problem 1257 - Farthest Nodes in a Tree (II)</a><br></h4>
+				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 18. <a href=../files/1044.html> Problem 1044 - Palindrome Partitioning</a><br></h4>
+				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 19. <a href=../files/1038.html> Problem 1038 - Race to 1 Again</a><br></h4>
+				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 20. <a href=../files/1033.html> Problem 1033 - Generating Palindromes</a><br></h4>
+				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 21. <a href=../files/1030.html> Problem 1030 - Discovering Gold</a><br></h4>
+				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 22. <a href=../files/1013.html> Problem 1013 - Love Calculator</a><br></h4>
+				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 23. <a href=../files/1050.html> Problem 1050 - Marbles</a><br></h4>
+				</ul>
 			</div>
 		</div>
 		<div id="footer">
-			<p> Last Updated on : <a>Fri, 14 Apr 2017</a></p>
+			<p> Last Updated on : <a>Mon, 14 Aug 2017</a></p>
 		</div>
 	</div>
 </body>

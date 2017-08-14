@@ -11,6 +11,23 @@
 </head>
 
 <body>
+	<script>
+		function myFunction() {
+			var input, filter, ul, li, a, i;
+			input = document.getElementById("myInput");
+			filter = input.value.toUpperCase();
+			ul = document.getElementById("myUL");
+			hh = ul.getElementsByTagName("h4");
+			for (i = 0; i < hh.length; i++) {
+				a = hh[i].getElementsByTagName("a")[0];
+				if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+					hh[i].style.display = "";
+				} else {
+					hh[i].style.display = "none";
+				}
+			}
+		}
+	</script>
 	<div id="main">
 		<div id="header">
 			<div id="logo">
@@ -36,11 +53,14 @@
 				</div>
 			</div>
 			<div id="content">
+				<input type="text" class = "myInput" id="myInput" onkeyup="myFunction()" placeholder="Search for problems.." title="Type in a name">
+				<ul id="myUL">
 				<h4 style = "font-size: 16px; LINE-HEIGHT:25px;"> 1. <a href=../files/1001.html> Problem 1001 - Opposite Task</a><br></h4>
+				</ul>
 			</div>
 		</div>
 		<div id="footer">
-			<p> Last Updated on : <a>Fri, 14 Apr 2017</a></p>
+			<p> Last Updated on : <a>Mon, 14 Aug 2017</a></p>
 		</div>
 	</div>
 </body>
